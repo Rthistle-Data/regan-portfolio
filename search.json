@@ -1,0 +1,51 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "I’m a data analyst focused on turning raw data into clear, actionable insights. Explore my featured projects below.\n\n\n\nBellabeat Capstone — R + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.\n\n\nContact: reganjamesthistle@gmail.com · GitHub · LinkedIn"
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "Welcome",
+    "section": "",
+    "text": "Bellabeat Capstone — R + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.\n\n\nContact: reganjamesthistle@gmail.com · GitHub · LinkedIn"
+  },
+  {
+    "objectID": "bellabeat.html",
+    "href": "bellabeat.html",
+    "title": "Bellabeat Capstone Case Study",
+    "section": "",
+    "text": "Downloads: PDF report · GitHub repo"
+  },
+  {
+    "objectID": "bellabeat.html#abstract",
+    "href": "bellabeat.html#abstract",
+    "title": "Bellabeat Capstone Case Study",
+    "section": "Abstract",
+    "text": "Abstract\nThis case study explores patterns in activity, sleep, and energy expenditure using Fitbit smart-device data to guide marketing strategies for Bellabeat, a wellness company. Using R for cleaning, analysis, and visualization, I examined relationships between steps, calories, and sleep, as well as temporal patterns by weekday and hour. Results suggest that higher activity correlates strongly with calorie burn, 7–8 hours of sleep align with improved next-day activity, and evenings/weekends present opportunities for targeted engagement. These findings inform data-driven recommendations such as sleep reminders, evening workout nudges, and segmented user messaging."
+  },
+  {
+    "objectID": "bellabeat.html#insights",
+    "href": "bellabeat.html#insights",
+    "title": "Bellabeat Capstone Case Study",
+    "section": "Insights",
+    "text": "Insights\n\nSteps and very active minutes are strongly associated with higher calories.\n\n7–8 hours of sleep aligns with higher activity the next day.\n\nEvening and weekend patterns suggest opportunity windows for engagement."
+  },
+  {
+    "objectID": "bellabeat.html#recommendations",
+    "href": "bellabeat.html#recommendations",
+    "title": "Bellabeat Capstone Case Study",
+    "section": "Recommendations",
+    "text": "Recommendations\n\nSleep reminders + smart alarms to target 7–8h sleep.\n\nShort evening micro-workout nudges.\n\nWeekend streak challenge with shareable badges.\n\nSegment-based messaging by average steps."
+  },
+  {
+    "objectID": "bellabeat.html#next-steps",
+    "href": "bellabeat.html#next-steps",
+    "title": "Bellabeat Capstone Case Study",
+    "section": "Next Steps",
+    "text": "Next Steps\nTo validate these recommendations, run small experiments: A/B test evening push notifications on step counts; pilot a weekend streak challenge; and instrument sleep reminders to measure downstream activity."
+  }
+]
