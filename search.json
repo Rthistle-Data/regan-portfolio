@@ -47,12 +47,5 @@
     "title": "Bellabeat Capstone Case Study",
     "section": "Next Steps",
     "text": "Next Steps\nTo validate these recommendations, run small experiments: A/B test evening push notifications on step counts; pilot a weekend streak challenge; and instrument sleep reminders to measure downstream activity."
-  },
-  {
-    "objectID": "dashboard.html",
-    "href": "dashboard.html",
-    "title": "E-commerce Performance Dashboard",
-    "section": "",
-    "text": "E-commerce Performance Dashboard"
   }
 ]
