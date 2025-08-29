@@ -1,0 +1,18 @@
+---
+title: "Welcome"
+format: html
+---
+
+# Hi, I'm Regan 👋
+I'm a data analyst focused on turning raw data into clear, actionable insights. Explore my featured projects below.
+
+## Featured Projects
+- **[Bellabeat Capstone](bellabeat.qmd)** — R + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.
+
+---
+
+**Contact**: reganjamesthistle@gmail.com · [GitHub](https://github.com/Rthistle-Data/regan-portfolio) · [LinkedIn](https://www.linkedin.com/in/regan-thistle-b5796b289/?trk=opento_sprofile_topcard)
+
+---
+
+# 

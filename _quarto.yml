@@ -1,0 +1,23 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Regan Thistle — Data Portfolio"
+  navbar:
+    left:
+      - text: Home
+        href: index.qmd
+      - text: Projects
+        menu:
+          - text: Bellabeat Capstone
+            href: bellabeat.qmd
+    right:
+      - icon: github
+        href: https://github.com/Rthistle-Data/regan-portfolio.git
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
