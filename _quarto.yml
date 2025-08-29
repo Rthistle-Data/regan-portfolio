@@ -12,6 +12,8 @@ website:
         menu:
           - text: Bellabeat Capstone
             href: bellabeat.qmd
+          - text: Dashboard
+            href: dashboard.qmd
     right:
       - icon: github
         href: https://github.com/Rthistle-Data/regan-portfolio.git

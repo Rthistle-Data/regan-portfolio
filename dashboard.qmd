@@ -1,0 +1,21 @@
+---
+title: "E-commerce Performance Dashboard"
+page-layout: full
+execute:
+  eval: false
+---
+
+::: {.embed}
+<iframe
+  src="https://public.tableau.com/views/CustomerRetentionRevenueTrendsProductInsights/Dashboard1?:language=en-US&:sid=&:redirect=auth&publish=yes&showOnboarding=true&:display_count=n&:origin=viz_share_link"
+  width="100%" height="850" frameborder="0" allowfullscreen>
+</iframe>
+:::
+
+::: {.callout-tip}
+**What you’re seeing**  
+This dashboard shows cohort retention, revenue trends, customer mix, and the top products. Returning customers contribute ~74% of revenue, while the top 10 products account for ~10%—a fragmented sales mix.
+
+.embed iframe { width: 100%; border: 0; }
+
+:::
