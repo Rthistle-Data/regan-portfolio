@@ -1,8 +1,15 @@
 # Regan Thistle — Data Analytics Portfolio
 
-Welcome! This is my data analytics portfolio showcasing projects completed with **R, Quarto, and the Google Data Analytics Certificate**.  
-🚀 **Live Portfolio Site:** [Click here](https://rthistle-data.github.io/regan-portfolio/)  
-📄 **PDF Report (Bellabeat Capstone):** [Download here](Bellabeat_Report.pdf)
+Welcome! This is my data analytics portfolio showcasing projects completed with R, Quarto, and the Google Data Analytics Certificate.
+
+## 🚀 Live Portfolio Site  
+👉 [View Portfolio](https://rthistle-data.github.io/regan-portfolio/)
+
+## 📊 E-commerce Performance Dashboard  
+👉 [View Dashboard](https://rthistle-data.github.io/regan-portfolio/dashboard.html)
+
+## 📄 PDF Report (Bellabeat Capstone)  
+👉 [Download Bellabeat Report](reports/bellabeat-report.pdf)
 
 ---
 
