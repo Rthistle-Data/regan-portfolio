@@ -1,17 +1,38 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Welcome",
+    "objectID": "rfm-segmentation.html",
+    "href": "rfm-segmentation.html",
+    "title": "Customer Segmentation with SQL (RFM)",
     "section": "",
-    "text": "I’m a data analyst focused on turning raw data into clear, actionable insights. Explore my featured projects below.\n\n\n\n\n\nR + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.\n\n\n\n\nExplore customer retention, revenue trends, and top product insights.\n\n\n\n\nContact: reganjamesthistle@gmail.com · GitHub · LinkedIn"
+    "text": "This project uses the Online Retail II dataset (2009–2011) loaded into BigQuery.\nThe goal is to segment customers into actionable groups using Recency, Frequency, and Monetary (RFM) analysis.\nBusiness Question:\nHow can we identify high-value customers (“Champions”), loyal buyers, new customers, and those at risk of churn?\n\n\n\n\nWe start by cleaning the raw transactional data:\n- Exclude cancellations (invoices starting with C)\n- Drop rows with missing Customer IDs\n- Keep only positive prices and quantities\n- Aggregate line items into invoice-level totals\n``sql CREATE OR REPLACE TABLE ecom.orders_clean AS SELECT   Invoice AS order_id,   CAST(Customer IDAS INT64) AS customer_id,   DATE(InvoiceDate) AS order_date,   ANY_VALUE(Country) AS country,   SUM(Quantity * Price) AS total_amount FROM ecom.ecom_raw_online_retail_ii WHERE NOT STARTS_WITH(Invoice, 'C')   ANDCustomer ID` IS NOT NULL AND Quantity &gt; 0 AND Price &gt; 0 GROUP BY order_id, customer_id, order_date;\nNext, we calculate Recency, Frequency, and Monetary value for each customer.\nRecency = days since last order\nFrequency = number of completed orders\nMonetary = total spend\nWITH bounds AS ( SELECT MAX(order_date) AS ref_date FROM ecom.orders_clean ) SELECT customer_id, DATE_DIFF((SELECT ref_date FROM bounds), MAX(order_date), DAY) AS recency_days, COUNT(*) AS frequency, SUM(total_amount) AS monetary FROM ecom.orders_clean GROUP BY customer_id;\nWe assign quintile scores (1–5) to each metric using NTILE.\nSmaller recency = higher score\nHigher frequency and spend = higher score\nWITH q AS ( SELECT *, NTILE(5) OVER (ORDER BY recency_days ASC) AS r_raw, NTILE(5) OVER (ORDER BY frequency DESC) AS f_score, NTILE(5) OVER (ORDER BY monetary DESC) AS m_score FROM ecom.vw_rfm_base ) SELECT customer_id, (6 - r_raw) AS r_score, f_score, m_score, recency_days, frequency, monetary FROM q;\nBased on RFM scores, we map customers into segments:\nSELECT customer_id, r_score, f_score, m_score, CASE WHEN r_score&gt;=4 AND f_score&gt;=4 AND m_score&gt;=4 THEN ‘Champions’ WHEN r_score&gt;=4 AND f_score&gt;=3 THEN ‘Loyal’ WHEN r_score&gt;=3 AND f_score&lt;=2 AND r_score&lt;=3 THEN ‘At Risk’ WHEN r_score&lt;=2 AND f_score&lt;=2 THEN ‘Hibernating’ WHEN r_score&gt;=4 AND f_score=1 THEN ‘New’ ELSE ‘Potential Loyalist’ END AS segment FROM ecom.vw_rfm_scored;\nFinally, we summarize the customer and revenue mix by segment:\nSELECT segment, COUNT(DISTINCT customer_id) AS customers, SUM(monetary) AS revenue, ROUND(100 * SUM(monetary) / NULLIF(SUM(SUM(monetary)) OVER (), 0), 1) AS revenue_pct FROM ecom.vw_rfm_segments GROUP BY segment ORDER BY revenue DESC;\nNew customers dominate revenue (62%) — likely because many are making first-time bulk purchases.\nPotential Loyalists (17%) — big customer base but less spend per customer → huge opportunity to convert into Loyal or Champions.\nAt Risk (10%) — moderate revenue share but small base → worth targeting with win-back campaigns.\nLoyal + Champions together &lt;5% of revenue — unusual pattern compared to most businesses, suggests retention and repeat-purchase strategy is weak.\nHibernating (6%) — older, inactive customers; low impact but worth occasional reactivation efforts.\n\n\n\n\n\n\nSegment\nCustomers\nRevenue (USD)\nRevenue %\n\n\n\n\nNew\n903\n11,021,535\n62.1%\n\n\nPotential Loyalist\n3,231\n2,983,970\n16.8%\n\n\nAt Risk\n514\n1,744,678\n9.8%\n\n\nHibernating\n358\n1,128,319\n6.4%\n\n\nLoyal\n548\n767,687\n4.3%\n\n\nChampions\n324\n98,138\n0.6%\n\n\n\n\n\n\n\nRetention challenge: Despite having &gt;300 “Champions,” they drive &lt;1% of revenue.\n\nRevenue concentration: 62% of revenue comes from new customers, showing high acquisition but poor retention.\n\nGrowth opportunity: With 3,200+ Potential Loyalists, even a 10% uplift in their repeat purchases would double the Loyal/Champion revenue.\n\nStrategic action:\n\nLaunch loyalty/reward programs to convert “Potential Loyalists” into repeat buyers.\n\nWin-back campaigns (email, discounts) for “At Risk” customers.\n\nAnalyze why “Champions” spend less — are they one-time bulk buyers?"
   },
   {
-    "objectID": "index.html#featured-projects",
-    "href": "index.html#featured-projects",
-    "title": "Welcome",
+    "objectID": "rfm-segmentation.html#project-overview",
+    "href": "rfm-segmentation.html#project-overview",
+    "title": "Customer Segmentation with SQL (RFM)",
     "section": "",
-    "text": "R + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.\n\n\n\n\nExplore customer retention, revenue trends, and top product insights.\n\n\n\n\nContact: reganjamesthistle@gmail.com · GitHub · LinkedIn"
+    "text": "This project uses the Online Retail II dataset (2009–2011) loaded into BigQuery.\nThe goal is to segment customers into actionable groups using Recency, Frequency, and Monetary (RFM) analysis.\nBusiness Question:\nHow can we identify high-value customers (“Champions”), loyal buyers, new customers, and those at risk of churn?"
+  },
+  {
+    "objectID": "rfm-segmentation.html#step-1.-data-cleaning",
+    "href": "rfm-segmentation.html#step-1.-data-cleaning",
+    "title": "Customer Segmentation with SQL (RFM)",
+    "section": "",
+    "text": "We start by cleaning the raw transactional data:\n- Exclude cancellations (invoices starting with C)\n- Drop rows with missing Customer IDs\n- Keep only positive prices and quantities\n- Aggregate line items into invoice-level totals\n``sql CREATE OR REPLACE TABLE ecom.orders_clean AS SELECT   Invoice AS order_id,   CAST(Customer IDAS INT64) AS customer_id,   DATE(InvoiceDate) AS order_date,   ANY_VALUE(Country) AS country,   SUM(Quantity * Price) AS total_amount FROM ecom.ecom_raw_online_retail_ii WHERE NOT STARTS_WITH(Invoice, 'C')   ANDCustomer ID` IS NOT NULL AND Quantity &gt; 0 AND Price &gt; 0 GROUP BY order_id, customer_id, order_date;\nNext, we calculate Recency, Frequency, and Monetary value for each customer.\nRecency = days since last order\nFrequency = number of completed orders\nMonetary = total spend\nWITH bounds AS ( SELECT MAX(order_date) AS ref_date FROM ecom.orders_clean ) SELECT customer_id, DATE_DIFF((SELECT ref_date FROM bounds), MAX(order_date), DAY) AS recency_days, COUNT(*) AS frequency, SUM(total_amount) AS monetary FROM ecom.orders_clean GROUP BY customer_id;\nWe assign quintile scores (1–5) to each metric using NTILE.\nSmaller recency = higher score\nHigher frequency and spend = higher score\nWITH q AS ( SELECT *, NTILE(5) OVER (ORDER BY recency_days ASC) AS r_raw, NTILE(5) OVER (ORDER BY frequency DESC) AS f_score, NTILE(5) OVER (ORDER BY monetary DESC) AS m_score FROM ecom.vw_rfm_base ) SELECT customer_id, (6 - r_raw) AS r_score, f_score, m_score, recency_days, frequency, monetary FROM q;\nBased on RFM scores, we map customers into segments:\nSELECT customer_id, r_score, f_score, m_score, CASE WHEN r_score&gt;=4 AND f_score&gt;=4 AND m_score&gt;=4 THEN ‘Champions’ WHEN r_score&gt;=4 AND f_score&gt;=3 THEN ‘Loyal’ WHEN r_score&gt;=3 AND f_score&lt;=2 AND r_score&lt;=3 THEN ‘At Risk’ WHEN r_score&lt;=2 AND f_score&lt;=2 THEN ‘Hibernating’ WHEN r_score&gt;=4 AND f_score=1 THEN ‘New’ ELSE ‘Potential Loyalist’ END AS segment FROM ecom.vw_rfm_scored;\nFinally, we summarize the customer and revenue mix by segment:\nSELECT segment, COUNT(DISTINCT customer_id) AS customers, SUM(monetary) AS revenue, ROUND(100 * SUM(monetary) / NULLIF(SUM(SUM(monetary)) OVER (), 0), 1) AS revenue_pct FROM ecom.vw_rfm_segments GROUP BY segment ORDER BY revenue DESC;\nNew customers dominate revenue (62%) — likely because many are making first-time bulk purchases.\nPotential Loyalists (17%) — big customer base but less spend per customer → huge opportunity to convert into Loyal or Champions.\nAt Risk (10%) — moderate revenue share but small base → worth targeting with win-back campaigns.\nLoyal + Champions together &lt;5% of revenue — unusual pattern compared to most businesses, suggests retention and repeat-purchase strategy is weak.\nHibernating (6%) — older, inactive customers; low impact but worth occasional reactivation efforts."
+  },
+  {
+    "objectID": "rfm-segmentation.html#results",
+    "href": "rfm-segmentation.html#results",
+    "title": "Customer Segmentation with SQL (RFM)",
+    "section": "",
+    "text": "Segment\nCustomers\nRevenue (USD)\nRevenue %\n\n\n\n\nNew\n903\n11,021,535\n62.1%\n\n\nPotential Loyalist\n3,231\n2,983,970\n16.8%\n\n\nAt Risk\n514\n1,744,678\n9.8%\n\n\nHibernating\n358\n1,128,319\n6.4%\n\n\nLoyal\n548\n767,687\n4.3%\n\n\nChampions\n324\n98,138\n0.6%"
+  },
+  {
+    "objectID": "rfm-segmentation.html#business-insights",
+    "href": "rfm-segmentation.html#business-insights",
+    "title": "Customer Segmentation with SQL (RFM)",
+    "section": "",
+    "text": "Retention challenge: Despite having &gt;300 “Champions,” they drive &lt;1% of revenue.\n\nRevenue concentration: 62% of revenue comes from new customers, showing high acquisition but poor retention.\n\nGrowth opportunity: With 3,200+ Potential Loyalists, even a 10% uplift in their repeat purchases would double the Loyal/Champion revenue.\n\nStrategic action:\n\nLaunch loyalty/reward programs to convert “Potential Loyalists” into repeat buyers.\n\nWin-back campaigns (email, discounts) for “At Risk” customers.\n\nAnalyze why “Champions” spend less — are they one-time bulk buyers?"
   },
   {
     "objectID": "bellabeat.html",
@@ -47,5 +68,19 @@
     "title": "Bellabeat Capstone Case Study",
     "section": "Next Steps",
     "text": "Next Steps\nTo validate these recommendations, run small experiments: A/B test evening push notifications on step counts; pilot a weekend streak challenge; and instrument sleep reminders to measure downstream activity."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Welcome",
+    "section": "",
+    "text": "I’m a data analyst focused on turning raw data into clear, actionable insights. Explore my featured projects below.\n\n\n\n\n\nR + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.\n\n\n\n\nExplore customer retention, revenue trends, and top product insights.\n\n\n\n\n\nBigQuery SQL project analyzing customer Recency, Frequency, and Monetary value. Revealed that 62% of revenue comes from new customers, while champions contribute &lt;1%.\n\n\n\nContact: reganjamesthistle@gmail.com · GitHub · LinkedIn"
+  },
+  {
+    "objectID": "index.html#featured-projects",
+    "href": "index.html#featured-projects",
+    "title": "Welcome",
+    "section": "",
+    "text": "R + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.\n\n\n\n\nExplore customer retention, revenue trends, and top product insights.\n\n\n\n\n\nBigQuery SQL project analyzing customer Recency, Frequency, and Monetary value. Revealed that 62% of revenue comes from new customers, while champions contribute &lt;1%.\n\n\n\nContact: reganjamesthistle@gmail.com · GitHub · LinkedIn"
   }
 ]

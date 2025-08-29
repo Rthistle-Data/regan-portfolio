@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Welcome – Regan Thistle — Data Portfolio</title>
+<title>Customer Segmentation with SQL (RFM) – Regan Thistle — Data Portfolio</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -122,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -130,25 +130,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul class="collapse">
-  <li><a href="#hi-im-regan" id="toc-hi-im-regan" class="nav-link active" data-scroll-target="#hi-im-regan">Hi, I’m Regan 👋</a>
+  <li><a href="#customer-segmentation-with-sql-rfm" id="toc-customer-segmentation-with-sql-rfm" class="nav-link active" data-scroll-target="#customer-segmentation-with-sql-rfm">Customer Segmentation with SQL (RFM)</a>
   <ul class="collapse">
-  <li><a href="#featured-projects" id="toc-featured-projects" class="nav-link" data-scroll-target="#featured-projects">Featured Projects</a></li>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link" data-scroll-target="#project-overview">📊 Project Overview</a></li>
+  <li><a href="#step-1.-data-cleaning" id="toc-step-1.-data-cleaning" class="nav-link" data-scroll-target="#step-1.-data-cleaning">🧹 Step 1. Data Cleaning</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">✅ Results</a></li>
+  <li><a href="#business-insights" id="toc-business-insights" class="nav-link" data-scroll-target="#business-insights">💡 Business Insights</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page-left" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Welcome</h1>
+<h1 class="title">Customer Segmentation with SQL (RFM)</h1>
 </div>
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page-left">
 
     
   
@@ -160,37 +162,115 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="hi-im-regan" class="level1">
-<h1>Hi, I’m Regan 👋</h1>
-<p>I’m a data analyst focused on turning raw data into clear, actionable insights. Explore my featured projects below.</p>
-<section id="featured-projects" class="level2">
-<h2 class="anchored" data-anchor-id="featured-projects">Featured Projects</h2>
-<div class="grid">
-<section id="bellabeat-capstone" class="level3 g-col-4">
-<h3 class="anchored" data-anchor-id="bellabeat-capstone"><a href="bellabeat.html">Bellabeat Capstone</a></h3>
-<p>R + tidyverse + ggplot2. Patterns in activity, sleep, and energy expenditure with marketing recommendations.<br>
-<img src="images/bellabeat-preview.png" alt="Bellabeat preview" style="width:100%; border:1px solid #ddd; border-radius:8px;"></p>
-</section>
-<section id="e-commerce-performance-dashboard" class="level3 g-col-4">
-<h3 class="anchored" data-anchor-id="e-commerce-performance-dashboard"><a href="dashboard.html">E-commerce Performance Dashboard</a></h3>
-<p>Explore customer retention, revenue trends, and top product insights.<br>
-<img src="https://public.tableau.com/static/images/Cu/CustomerRetentionRevenueTrendsProductInsights/Dashboard1/1.png" alt="Dashboard preview" style="width:100%; border:1px solid #ddd; border-radius:8px;"></p>
-</section>
-</div>
-<section id="sql-customer-segmentation-rfm" class="level3 g-col-4">
-<h3 class="anchored" data-anchor-id="sql-customer-segmentation-rfm"><a href="rfm-segmentation.html">SQL — Customer Segmentation (RFM)</a></h3>
-<p>BigQuery SQL project analyzing customer Recency, Frequency, and Monetary value. Revealed that <strong>62% of revenue comes from new customers</strong>, while champions contribute &lt;1%.<br>
-<img src="images/rfm-preview.png" alt="RFM preview" style="width:100%; border:1px solid #ddd; border-radius:8px;"></p>
-</section>
-<hr>
-<p><strong>Contact</strong>: reganjamesthistle@gmail.com · <a href="https://github.com/Rthistle-Data/regan-portfolio">GitHub</a> · <a href="https://www.linkedin.com/in/regan-thistle-b5796b289/?trk=opento_sprofile_topcard">LinkedIn</a></p>
+<section id="customer-segmentation-with-sql-rfm" class="level1">
+<h1>Customer Segmentation with SQL (RFM)</h1>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">📊 Project Overview</h2>
+<p>This project uses the <strong>Online Retail II dataset</strong> (2009–2011) loaded into <strong>BigQuery</strong>.<br>
+The goal is to segment customers into actionable groups using <strong>Recency, Frequency, and Monetary (RFM)</strong> analysis.</p>
+<p><strong>Business Question:</strong><br>
+<em>How can we identify high-value customers (“Champions”), loyal buyers, new customers, and those at risk of churn?</em></p>
 <hr>
 </section>
+<section id="step-1.-data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="step-1.-data-cleaning">🧹 Step 1. Data Cleaning</h2>
+<p>We start by cleaning the raw transactional data:<br>
+- Exclude cancellations (invoices starting with <code>C</code>)<br>
+- Drop rows with missing Customer IDs<br>
+- Keep only positive prices and quantities<br>
+- Aggregate line items into invoice-level totals</p>
+<p>``<code>sql CREATE OR REPLACE TABLE ecom.orders_clean AS SELECT   Invoice AS order_id,   CAST(</code>Customer ID<code>AS INT64) AS customer_id,   DATE(InvoiceDate) AS order_date,   ANY_VALUE(Country) AS country,   SUM(Quantity * Price) AS total_amount FROM ecom.ecom_raw_online_retail_ii WHERE NOT STARTS_WITH(Invoice, 'C')   AND</code>Customer ID` IS NOT NULL AND Quantity &gt; 0 AND Price &gt; 0 GROUP BY order_id, customer_id, order_date;</p>
+<p>Next, we calculate Recency, Frequency, and Monetary value for each customer.</p>
+<p>Recency = days since last order</p>
+<p>Frequency = number of completed orders</p>
+<p>Monetary = total spend</p>
+<p>WITH bounds AS ( SELECT MAX(order_date) AS ref_date FROM ecom.orders_clean ) SELECT customer_id, DATE_DIFF((SELECT ref_date FROM bounds), MAX(order_date), DAY) AS recency_days, COUNT(*) AS frequency, SUM(total_amount) AS monetary FROM ecom.orders_clean GROUP BY customer_id;</p>
+<p>We assign quintile scores (1–5) to each metric using NTILE.</p>
+<p>Smaller recency = higher score</p>
+<p>Higher frequency and spend = higher score</p>
+<p>WITH q AS ( SELECT *, NTILE(5) OVER (ORDER BY recency_days ASC) AS r_raw, NTILE(5) OVER (ORDER BY frequency DESC) AS f_score, NTILE(5) OVER (ORDER BY monetary DESC) AS m_score FROM ecom.vw_rfm_base ) SELECT customer_id, (6 - r_raw) AS r_score, f_score, m_score, recency_days, frequency, monetary FROM q;</p>
+<p>Based on RFM scores, we map customers into segments:</p>
+<p>SELECT customer_id, r_score, f_score, m_score, CASE WHEN r_score&gt;=4 AND f_score&gt;=4 AND m_score&gt;=4 THEN ‘Champions’ WHEN r_score&gt;=4 AND f_score&gt;=3 THEN ‘Loyal’ WHEN r_score&gt;=3 AND f_score&lt;=2 AND r_score&lt;=3 THEN ‘At Risk’ WHEN r_score&lt;=2 AND f_score&lt;=2 THEN ‘Hibernating’ WHEN r_score&gt;=4 AND f_score=1 THEN ‘New’ ELSE ‘Potential Loyalist’ END AS segment FROM ecom.vw_rfm_scored;</p>
+<p>Finally, we summarize the customer and revenue mix by segment:</p>
+<p>SELECT segment, COUNT(DISTINCT customer_id) AS customers, SUM(monetary) AS revenue, ROUND(100 * SUM(monetary) / NULLIF(SUM(SUM(monetary)) OVER (), 0), 1) AS revenue_pct FROM ecom.vw_rfm_segments GROUP BY segment ORDER BY revenue DESC;</p>
+<p>New customers dominate revenue (62%) — likely because many are making first-time bulk purchases.</p>
+<p>Potential Loyalists (17%) — big customer base but less spend per customer → huge opportunity to convert into Loyal or Champions.</p>
+<p>At Risk (10%) — moderate revenue share but small base → worth targeting with win-back campaigns.</p>
+<p>Loyal + Champions together &lt;5% of revenue — unusual pattern compared to most businesses, suggests retention and repeat-purchase strategy is weak.</p>
+<p>Hibernating (6%) — older, inactive customers; low impact but worth occasional reactivation efforts.</p>
 </section>
-<section id="section" class="level1">
-<h1></h1>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">✅ Results</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Segment</th>
+<th>Customers</th>
+<th>Revenue (USD)</th>
+<th>Revenue %</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>New</td>
+<td>903</td>
+<td>11,021,535</td>
+<td>62.1%</td>
+</tr>
+<tr class="even">
+<td>Potential Loyalist</td>
+<td>3,231</td>
+<td>2,983,970</td>
+<td>16.8%</td>
+</tr>
+<tr class="odd">
+<td>At Risk</td>
+<td>514</td>
+<td>1,744,678</td>
+<td>9.8%</td>
+</tr>
+<tr class="even">
+<td>Hibernating</td>
+<td>358</td>
+<td>1,128,319</td>
+<td>6.4%</td>
+</tr>
+<tr class="odd">
+<td>Loyal</td>
+<td>548</td>
+<td>767,687</td>
+<td>4.3%</td>
+</tr>
+<tr class="even">
+<td>Champions</td>
+<td>324</td>
+<td>98,138</td>
+<td>0.6%</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="business-insights" class="level2">
+<h2 class="anchored" data-anchor-id="business-insights">💡 Business Insights</h2>
+<ul>
+<li><strong>Retention challenge</strong>: Despite having &gt;300 “Champions,” they drive &lt;1% of revenue.<br>
+</li>
+<li><strong>Revenue concentration</strong>: 62% of revenue comes from <em>new</em> customers, showing high acquisition but poor retention.<br>
+</li>
+<li><strong>Growth opportunity</strong>: With 3,200+ Potential Loyalists, even a 10% uplift in their repeat purchases would double the Loyal/Champion revenue.<br>
+</li>
+<li><strong>Strategic action</strong>:
+<ul>
+<li>Launch loyalty/reward programs to convert “Potential Loyalists” into repeat buyers.<br>
+</li>
+<li>Win-back campaigns (email, discounts) for “At Risk” customers.<br>
+</li>
+<li>Analyze why “Champions” spend less — are they one-time bulk buyers?</li>
+</ul></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
