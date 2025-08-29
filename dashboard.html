@@ -150,9 +150,58 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div style="width:100%; max-width:100%; margin:0; padding:0;">
-<p><iframe src="https://public.tableau.com/views/CustomerRetentionRevenueTrendsProductInsights/Dashboard1?:showVizHome=no&amp;:embed=y" style="width:100%; height:90vh; border:none;" allowfullscreen="" loading="lazy"> </iframe></p>
-</div>
+<style>
+  /* Full-bleed section that breaks out of Quarto's centered column */
+  .full-bleed {
+    width: 100vw;                 /* span full viewport width */
+    margin-left: 50%;             /* center the 100vw box */
+    transform: translateX(-50%);  /* pull it back to align */
+  }
+  /* Remove page padding so the full-bleed truly touches edges */
+  main.content { padding-left: 0; padding-right: 0; }
+
+  /* Make embeds fill the full-bleed area */
+  .full-bleed iframe,
+  .full-bleed .tableauPlaceholder,
+  .full-bleed .tableauViz,
+  .full-bleed object {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+</style>
+<!-- OPTION A: Simple + reliable iframe -->
+<section class="full-bleed">
+<iframe src="https://public.tableau.com/views/CustomerRetentionRevenueTrendsProductInsights/Dashboard1?:showVizHome=no&amp;:embed=y" style="border:0; width:100%; height:92vh; min-height:760px;" allowfullscreen="" loading="lazy">
+</iframe>
+</section>
+<!-- OPTION B: (If you prefer the Tableau JS embed instead of iframe)
+<section class="full-bleed">
+  <div class='tableauPlaceholder' id='viz1756493689894' style='position:relative; min-height:760px;'>
+    <noscript>
+      <a href='#'>
+        <img alt='Dashboard'
+             src='https://public.tableau.com/static/images/Cu/CustomerRetentionRevenueTrendsProductInsights/Dashboard1/1.png'
+             style='border:0;'/>
+      </a>
+    </noscript>
+    <object class='tableauViz' style='display:none;'></object>
+  </div>
+  <script>
+    (function() {
+      var div = document.getElementById('viz1756493689894');
+      var obj = div.getElementsByTagName('object')[0];
+      obj.style.width = '100%';
+      obj.style.height = (Math.max(window.innerHeight*0.92, 760)) + 'px';
+      window.addEventListener('resize', () => {
+        obj.style.height = (Math.max(window.innerHeight*0.92, 760)) + 'px';
+      });
+      var s = document.createElement('script');
+      s.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      obj.parentNode.insertBefore(s, obj);
+    })();
+  </script>
+</section>
+-->
 
 
 
